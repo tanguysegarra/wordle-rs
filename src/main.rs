@@ -12,10 +12,8 @@ use error::Error;
 const MAX_ROUNDS: i32 = 6;
 
 fn main() -> Result<(), Error> {
-    let args: Vec<String> = env::args().collect();
-    let wordlist_path = &args[1];
-    let reader = BufReader::new(File::open(wordlist_path)?);
-    let words: Vec<String> = reader.lines().collect::<Result<_, _>>()?;
+    let words_str = include_str!("./misc/english.txt");
+    let words: Vec<String> = words_str.lines().map(|line| line.to_string()).collect();
     let word_to_guess = words.choose(&mut rand::thread_rng()).ok_or(Error::RandFail)?;
 
     let mut word_try = String::new();
