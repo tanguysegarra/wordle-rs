@@ -15,7 +15,7 @@ fn main() -> Result<(), Error> {
     let words: Vec<String> = reader.lines().collect::<Result<_, _>>()?;
     let word_to_guess = match words.choose(&mut rand::thread_rng()) {
         Some(word) => word,
-        None => return Err(Error::RandFail)
+        None => return Err(Error::RandFail),
     };
 
     println!("{}", word_to_guess);
