@@ -1,7 +1,4 @@
-use std::env;
-use std::fs::File;
 use std::io;
-use std::io::{BufRead, BufReader};
 
 use rand::seq::SliceRandom;
 use colored::Colorize;
@@ -21,7 +18,7 @@ fn main() -> Result<(), Error> {
     for _ in 0..MAX_ROUNDS as usize {
         while !words.contains(&word_try.trim_end().to_string()) {
             word_try.clear();
-            println!("Enter a valid word: ");
+            println!("{}", "Enter a valid word: ".italic());
             io::stdin().read_line(&mut word_try)?;
         }
         word_try = word_try.trim_end().to_string();
@@ -49,7 +46,7 @@ fn main() -> Result<(), Error> {
         word_try.clear();
     }
 
-    println!("Arf! The word was {}!", word_to_guess);
+    println!("Arf! The word was {}!", word_to_guess.bold());
 
     Ok(())
 }
